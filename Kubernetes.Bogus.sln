@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kubernetes.Bogus", "Kubernetes.Bogus\Kubernetes.Bogus.csproj", "{BE7F4880-0FA2-41F7-9A41-E3FF3AD1E56C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE7F4880-0FA2-41F7-9A41-E3FF3AD1E56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7F4880-0FA2-41F7-9A41-E3FF3AD1E56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7F4880-0FA2-41F7-9A41-E3FF3AD1E56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7F4880-0FA2-41F7-9A41-E3FF3AD1E56C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
