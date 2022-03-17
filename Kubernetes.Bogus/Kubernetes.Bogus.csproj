@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <TargetFramework>net6.0</TargetFramework>
         <Authors>KrisJohnstone</Authors>
+        <PackageVersion>1.0.0-beta</PackageVersion>
         <PackageId>Kubernetes.Bogus</PackageId>
         <PackageTags>Bogus;Faker;</PackageTags>
         <Description>
@@ -15,7 +16,7 @@
         </Description>
         <Copyright>Copyright (c) KrisJohnstone 2022.</Copyright>
         <RepositoryUrl>https://github.com/KrisJohnstone/Kubernetes.Bogus</RepositoryUrl>
-        <PackageLicenseExpression>GNU</PackageLicenseExpression>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
