@@ -2,7 +2,6 @@ using System.Text;
 using k8s.Models;
 
 namespace Bogus.Kubernetes;
-
 public static class KubernetesMethods
 {
     /// <summary>
@@ -22,11 +21,12 @@ public static class KubernetesMethods
             letter = Convert.ToChar(shift + 65);
             prefix.Append(letter);
         }
+
         return prefix.ToString();
     }
 
     public static Faker<V1ObjectMeta> GenerateMetadata(string project, string version, string environment,
-                                                                    Dictionary<string, string> anno, bool generateLabels)
+        Dictionary<string, string> anno, bool generateLabels)
     {
         var faker = new Faker<V1ObjectMeta>()
             .RuleFor(u => u.Name, f => $"{project}-{f.Kubernetes().ContainerName()}")
@@ -50,15 +50,16 @@ public static class KubernetesMethods
                 {"app.kubernetes.io/name", $"{u.Name}"}
             });
         }
+
         return faker;
     }
 
-    public static V1DeploymentList GenerateDeploymentList(string project, string environment, string version, 
+    public static V1DeploymentList GenerateDeploymentList(string project, string environment, string version,
         int replicas = 3, int availableReplicas = 3, int readyReplicas = 3, int numberOfDeployments = 1)
     {
         var deps = GenerateDeployment(project, environment, version, replicas, availableReplicas, readyReplicas,
             numberOfDeployments);
-            
+
         deps.ForEach(x =>
         {
             x.Spec.Template = new V1PodTemplateSpec()
@@ -69,19 +70,21 @@ public static class KubernetesMethods
                 }
             };
         });
-            
+
         var depList = new Faker<V1DeploymentList>()
             .RuleFor(u => u.Items, (f, u) => deps).Generate();
 
         return depList;
     }
 
-    public static List<V1Deployment> GenerateDeployment(string project, string environment, string version, int replicas = 3, 
+    public static List<V1Deployment> GenerateDeployment(string project, string environment, string version,
+        int replicas = 3,
         int availableReplicas = 3, int readyReplicas = 3, int numberOfDeployments = 1)
     {
         var deps = new Faker<V1Deployment>()
             .RuleFor(u => u.Metadata, f => f.Kubernetes()
-                .GenerateMetadata(project, environment, version, new Dictionary<string, string>(){{"eyespy-monitor","true"}}, true).Generate())
+                .GenerateMetadata(project, environment, version,
+                    new Dictionary<string, string>() {{"eyespy-monitor", "true"}}, true).Generate())
             .RuleFor(u => u.Spec, (f, u) => new Faker<V1DeploymentSpec>()
                 .RuleFor(u => u.Replicas, f => replicas))
             .RuleFor(u => u.Status, f => new V1DeploymentStatus()
@@ -93,7 +96,7 @@ public static class KubernetesMethods
 
         return deps;
     }
-    
+
     public static List<V1Deployment> GenerateDeployment(int numberOfDeployments = 1)
     {
         var deps = new Faker<V1Deployment>()
@@ -108,21 +111,22 @@ public static class KubernetesMethods
         foreach (var dep in deps)
         {
             dep.Spec.Template.Spec.Containers = new List<V1Container>();
-            var containers = GenerateContainers(dep.Metadata.Name.Split(new []{'-'})[1], "v1.0.1");
+            var containers = GenerateContainers(dep.Metadata.Name.Split(new[] {'-'})[1], "v1.0.1");
             foreach (var c in containers)
             {
                 dep.Spec.Template.Spec.Containers.Add(c);
             }
         }
-        
+
         return deps;
     }
 
     public static List<V1Container> GenerateContainers(V1ObjectMeta meta, int containerCount = 1)
-    => new Faker<V1Container>()
-            .RuleFor(u => u.Image, (f,u) => $"{meta.Name.Split(new []{'-'})[1]}:{meta.Labels["app.kubernetes.io/version"]}")
-            .RuleFor(u => u.Name, (f,u) => meta.Name.Split(new []{'-'})[1]).Generate(containerCount);
-    
+        => new Faker<V1Container>()
+            .RuleFor(u => u.Image,
+                (f, u) => $"{meta.Name.Split(new[] {'-'})[1]}:{meta.Labels["app.kubernetes.io/version"]}")
+            .RuleFor(u => u.Name, (f, u) => meta.Name.Split(new[] {'-'})[1]).Generate(containerCount);
+
     public static List<V1Container> GenerateContainers(string name, string version)
         => new Faker<V1Container>()
             .RuleFor(u => u.Image, () => $"{name}:{version}")
@@ -141,13 +145,14 @@ public static class KubernetesMethods
         foreach (var sts in result)
         {
             sts.Spec.Template.Spec.Containers = new List<V1Container>();
-            var containers = GenerateContainers(sts.Metadata.Name.Split(new []{'-'})[1], "v1.0.1");
+            var containers = GenerateContainers(sts.Metadata.Name.Split(new[] {'-'})[1], "v1.0.1");
             foreach (var c in containers)
             {
                 sts.Spec.Template.Spec.Containers.Add(c);
             }
         }
+
         return result;
     }
-    
+
 }

@@ -1,9 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <TargetFramework>net6.0</TargetFramework>
+        <Authors>KrisJohnstone</Authors>
+        <PackageId>Kubernetes.Bogus</PackageId>
+        <PackageTags>Bogus;Faker;</PackageTags>
+        <Description>
+            This library acts as extension for epic package Bogus by bchavez by providing extension methods in the form
+            of being able to generate names for various items.
+            
+            It also has basic functionality to generate objects for use in automated tests.
+        </Description>
+        <Copyright>Copyright (c) KrisJohnstone 2022.</Copyright>
+        <RepositoryUrl>https://github.com/KrisJohnstone/Kubernetes.Bogus</RepositoryUrl>
+        <PackageLicenseExpression>GNU</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>

@@ -7,7 +7,7 @@ public static class KubernetesStrings
         "postgres", "mongodb", "wordpress", "nginx", "elasticsearch", "kind", "flux",
         "sealed-secrets", "argocd", "flagger", "loki", "mariadb", "amplify"
     };
-    
+
     public static readonly string[] Environments =
     {
         "test", "prod", "development", "acceptance"
