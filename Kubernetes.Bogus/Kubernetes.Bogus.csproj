@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <TargetFramework>net6.0</TargetFramework>
         <Authors>KrisJohnstone</Authors>
-        <PackageVersion>1.0.1-beta</PackageVersion>
+        <PackageVersion>1.0.2-beta</PackageVersion>
         <PackageId>Kubernetes.Bogus</PackageId>
         <PackageTags>Bogus;Faker;</PackageTags>
         <Description>
